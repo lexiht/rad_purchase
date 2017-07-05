@@ -1,3 +1,5 @@
 <% if user_signed_in? %>
-  <%= javascript_pack_tag 'app', firstName: current_user.first_name, lastName: current_user.last_name %>
+  <%= javascript_pack_tag 'app' %>
 <% end %>
+
+<%= link_to 'Log Out', destroy_user_session_path, method: :delete %>
