@@ -26,8 +26,14 @@ class SuppliersController < ApplicationController
   end
 
   def update
-    supplier = Supplier.find(params[:id])
-    supplier.update(supplier_params)
+    @supplier = Supplier.find(params[:id])
+    @supplier.update(supplier_params)
+    redirect_to dashboard_url
+  end
+
+  def destroy
+    @supplier = Supplier.find(params[:id])
+    @supplier.delete
     redirect_to dashboard_url
   end
 
