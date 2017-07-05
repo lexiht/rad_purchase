@@ -1,1 +1,3 @@
-<h1>Dashboard#index</h1>
+<% if user_signed_in? %>
+  <%= javascript_pack_tag 'app', firstName: current_user.first_name, lastName: current_user.last_name %>
+<% end %>
