@@ -5,8 +5,10 @@
 <%= link_to 'Log Out', destroy_user_session_path, method: :delete %>
 
 <% @suppliers.each do |supplier| %>
-  <div>Name: <%= supplier.name %></div>
+  <div>Name: <%= link_to supplier.name, supplier_path(supplier) %></div>
   <div>Email: <%= supplier.email %></div>
+  <div>Phone: <%= supplier.phone %></div>
+  <div>Website: <%= supplier.website %></div>
 <% end %>
 
 <%= link_to 'Add Supplier', new_supplier_path %>
