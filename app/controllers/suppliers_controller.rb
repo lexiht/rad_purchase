@@ -1,4 +1,6 @@
 class SuppliersController < ApplicationController
+  before_action :find_supplier
+
   def new
     @supplier = Supplier.new
   end
@@ -17,22 +19,16 @@ class SuppliersController < ApplicationController
     end
   end
 
-  def show
-    @supplier = Supplier.find(params[:id])
-  end
+  def show; end
 
-  def edit
-    @supplier = Supplier.find(params[:id])
-  end
+  def edit; end
 
   def update
-    @supplier = Supplier.find(params[:id])
     @supplier.update(supplier_params)
     redirect_to dashboard_url
   end
 
   def destroy
-    @supplier = Supplier.find(params[:id])
     @supplier.delete
     redirect_to dashboard_url
   end
@@ -41,5 +37,9 @@ class SuppliersController < ApplicationController
 
   def supplier_params
     params.require(:supplier).permit(:name, :email, :website, :phone)
+  end
+
+  def find_supplier
+    @supplier = Supplier.find(params[:id])
   end
 end
