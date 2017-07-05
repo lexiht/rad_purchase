@@ -13,12 +13,22 @@ class SuppliersController < ApplicationController
       supplier.errors.each do |key, value|
         flash[:alert] += "#{key}: #{value}"
       end
-      redirect_to new_supplier_path
+      redirect_to new_supplier_url
     end
   end
 
   def show
     @supplier = Supplier.find(params[:id])
+  end
+
+  def edit
+    @supplier = Supplier.find(params[:id])
+  end
+
+  def update
+    supplier = Supplier.find(params[:id])
+    supplier.update(supplier_params)
+    redirect_to dashboard_url
   end
 
   private
