@@ -3,3 +3,8 @@
 <% end %>
 
 <%= link_to 'Log Out', destroy_user_session_path, method: :delete %>
+
+<% @suppliers.each do |supplier| %>
+  <div>Name: <%= supplier.name %></div>
+  <div>Email: <%= supplier.email %></div>
+<% end %>
