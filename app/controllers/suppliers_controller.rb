@@ -19,7 +19,9 @@ class SuppliersController < ApplicationController
     end
   end
 
-  def show; end
+  def show
+    @items = @supplier.items
+  end
 
   def edit; end
 

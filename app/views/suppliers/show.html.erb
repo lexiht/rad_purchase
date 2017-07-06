@@ -1,9 +1,18 @@
 <div>Name: <%= @supplier.name %></div>
 <div>Email: <%= @supplier.email %></div>
-<%= @supplier.phone %>
-<%= @supplier.website %>
+<div>Phone: <%= @supplier.phone %></div>
+<div>Website: <%= @supplier.website %></div>
 
 <%= link_to 'Edit', edit_supplier_path(@supplier) %>
 <%= link_to 'Delete', supplier_path(@supplier), data: { confirm: 'Are you sure?', method: :delete } %>
 <%= link_to 'Dashboard', dashboard_path %>
 <%= link_to 'Add Item', new_supplier_item_path(@supplier) %>
+
+<h2>Items</h2>
+<% @items.each do |item| %>
+  <div>Name: <%= item.name %></div>
+  <div>Product code: <%= item.product_code %></div>
+  <div>Description: <%= item.description %></div>
+  <div>Quantity: <%= item.quantity %></div>
+  <div>Price: <%= item.price %></div>
+<% end %>
