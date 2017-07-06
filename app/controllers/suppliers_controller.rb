@@ -1,5 +1,5 @@
 class SuppliersController < ApplicationController
-  before_action :find_supplier
+  before_action :find_supplier, except: [:new, :create]
 
   def new
     @supplier = Supplier.new

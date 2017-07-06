@@ -1,0 +1,11 @@
+<%= form_for [@supplier, @item]  do |f| %>
+  Name: <%= f.text_field :name %><br />
+  Product code: <%= f.text_field :product_code %><br />
+  Description: <%= f.text_field :description %><br />
+  Quantity: <%= f.number_field :quantity %><br />
+  Price: <%= f.number_field :price %><br />
+  <%= f.submit 'Submit' %>
+<% end %>
+
+<%= link_to 'Supplier', supplier_path(@supplier) %>
+<%= link_to 'Dashboard', dashboard_path %>
