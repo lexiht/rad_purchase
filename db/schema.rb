@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170706112503) do
+ActiveRecord::Schema.define(version: 20170706213023) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,10 +21,34 @@ ActiveRecord::Schema.define(version: 20170706112503) do
     t.string "product_code"
     t.string "description"
     t.integer "quantity"
-    t.integer "price"
+    t.float "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["supplier_id"], name: "index_items_on_supplier_id"
+  end
+
+  create_table "items_order_items", id: false, force: :cascade do |t|
+    t.bigint "order_item_id", null: false
+    t.bigint "item_id", null: false
+    t.index ["item_id", "order_item_id"], name: "index_items_order_items_on_item_id_and_order_item_id"
+    t.index ["order_item_id", "item_id"], name: "index_items_order_items_on_order_item_id_and_item_id"
+  end
+
+  create_table "order_items", force: :cascade do |t|
+    t.integer "quantity"
+    t.float "value"
+    t.bigint "order_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_id"], name: "index_order_items_on_order_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.float "value"
+    t.integer "order_number"
+    t.string "reference"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "suppliers", force: :cascade do |t|
@@ -56,4 +80,5 @@ ActiveRecord::Schema.define(version: 20170706112503) do
   end
 
   add_foreign_key "items", "suppliers"
+  add_foreign_key "order_items", "orders"
 end
