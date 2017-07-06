@@ -10,7 +10,7 @@
 
 <h2>Items</h2>
 <% @items.each do |item| %>
-  <div>Name: <%= item.name %></div>
+  <div>Name: <%= link_to item.name, supplier_item_path(@supplier, item) %></div>
   <div>Product code: <%= item.product_code %></div>
   <div>Description: <%= item.description %></div>
   <div>Quantity: <%= item.quantity %></div>
