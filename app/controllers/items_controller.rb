@@ -1,16 +1,14 @@
 class ItemsController < ApplicationController
+  before_action :find_supplier
+  before_action :find_item, except: [:new, :create]
+
   def new
-    @supplier = Supplier.find(params[:supplier_id])
     @item = @supplier.items.build
   end
 
-  def show
-    @supplier = Supplier.find(params[:supplier_id])
-    @item = @supplier.items.find(params[:id])
-  end
+  def show; end
 
   def create
-    @supplier = Supplier.find(params[:supplier_id])
     @item = @supplier.items.new(item_params)
     if @item.save
       flash[:notice] = 'You have successfully added an item!'
@@ -24,21 +22,14 @@ class ItemsController < ApplicationController
     end
   end
 
-  def edit
-    @supplier = Supplier.find(params[:supplier_id])
-    @item = @supplier.items.find(params[:id])
-  end
+  def edit; end
 
   def update
-    @supplier = Supplier.find(params[:supplier_id])
-    @item = @supplier.items.find(params[:id])
     @item.update(item_params)
     redirect_to supplier_path(@supplier)
   end
 
   def destroy
-    @supplier = Supplier.find(params[:supplier_id])
-    @item = @supplier.items.find(params[:id])
     @item.delete
     redirect_to supplier_path(@supplier)
   end
@@ -47,5 +38,13 @@ class ItemsController < ApplicationController
 
   def item_params
     params.require(:item).permit(:name, :product_code, :description, :quantity, :price)
+  end
+
+  def find_supplier
+    @supplier = Supplier.find(params[:supplier_id])
+  end
+
+  def find_item
+    @item = @supplier.items.find(params[:id])
   end
 end
