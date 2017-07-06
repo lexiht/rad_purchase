@@ -1,8 +1,10 @@
+<%= link_to 'Supplier', supplier_path(@supplier) %>
+<%= link_to 'Dashboard', dashboard_path %>
+
 <div>Name: <%= @item.name %></div>
 <div>Product code: <%= @item.product_code %></div>
 <div>Description: <%= @item.description %></div>
 <div>Quantity: <%= @item.quantity %></div>
 <div>Price: <%= @item.price %></div>
 
-<%= link_to 'Supplier', supplier_path(@supplier) %>
-<%= link_to 'Dashboard', dashboard_path %>
+<%= link_to 'Edit', edit_supplier_item_path(@supplier, @item) %>

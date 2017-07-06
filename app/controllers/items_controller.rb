@@ -24,6 +24,18 @@ class ItemsController < ApplicationController
     end
   end
 
+  def edit
+    @supplier = Supplier.find(params[:supplier_id])
+    @item = @supplier.items.find(params[:id])
+  end
+
+  def update
+    @supplier = Supplier.find(params[:supplier_id])
+    @item = @supplier.items.find(params[:id])
+    @item.update(item_params)
+    redirect_to supplier_path(@supplier)
+  end
+
   private
 
   def item_params
