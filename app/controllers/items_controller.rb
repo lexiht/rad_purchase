@@ -36,6 +36,13 @@ class ItemsController < ApplicationController
     redirect_to supplier_path(@supplier)
   end
 
+  def destroy
+    @supplier = Supplier.find(params[:supplier_id])
+    @item = @supplier.items.find(params[:id])
+    @item.delete
+    redirect_to supplier_path(@supplier)
+  end
+
   private
 
   def item_params

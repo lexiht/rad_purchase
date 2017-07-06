@@ -15,4 +15,6 @@
   <div>Description: <%= item.description %></div>
   <div>Quantity: <%= item.quantity %></div>
   <div>Price: <%= item.price %></div>
+  <%= link_to 'Edit', edit_supplier_item_path(@supplier, item) %>
+  <%= link_to 'Delete', supplier_item_path(@supplier, item), data: { confirm: 'Are you sure?', method: :delete } %>
 <% end %>
