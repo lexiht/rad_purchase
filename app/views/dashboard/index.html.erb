@@ -3,12 +3,13 @@
 <% end %>
 
 <%= link_to 'Log Out', destroy_user_session_path, method: :delete %>
+<%= link_to 'Add Supplier', new_supplier_path %>
 
 <% @suppliers.each do |supplier| %>
   <div>Name: <%= link_to supplier.name, supplier_path(supplier) %></div>
   <div>Email: <%= supplier.email %></div>
   <div>Phone: <%= supplier.phone %></div>
   <div>Website: <%= supplier.website %></div>
+  <%= link_to 'Edit', edit_supplier_path(supplier) %>
+  <%= link_to 'Delete', supplier_path(supplier), data: { confirm: 'Are you sure?', method: :delete } %>
 <% end %>
-
-<%= link_to 'Add Supplier', new_supplier_path %>
